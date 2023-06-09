@@ -1,8 +1,10 @@
+# when you want to conduct optimization with fixed atoms, try the following code to change original POSCAR
+
 # Open the original file and the target file
-with open('SPOSCAR.orig', 'r') as f:
+with open('POSCAR', 'r') as f:
     lines = f.readlines()
 
-with open('SPOSCAR', 'w') as f:
+with open('new-POSCAR', 'w') as f:
     # Add ' T T T' at the end of each line
     lines = [line.rstrip() + ' T T T' for line in lines]
 
