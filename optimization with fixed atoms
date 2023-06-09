@@ -1,0 +1,20 @@
+# Open the original file and the target file
+with open('SPOSCAR.orig', 'r') as f:
+    lines = f.readlines()
+
+with open('SPOSCAR', 'w') as f:
+    # Add ' T T T' at the end of each line
+    lines = [line.rstrip() + ' T T T' for line in lines]
+
+    # Remove ' T T T' from the first 8 lines
+    lines[:8] = [line.replace(' T T T', '') for line in lines[:8]]
+
+    # Replace ' T T T' with ' F F F' in specified lines
+    lines[80:107] = [line.replace(' T T T', ' F F F') for line in lines[80:107]]
+    lines[134:188] = [line.replace(' T T T', ' F F F') for line in lines[134:188]]
+
+    # Insert 'Selective dynamics' after the 7th line
+    lines.insert(6 + 1, 'Selective dynamics')
+
+    # Write the modified content to the target file
+    f.writelines('\n'.join(lines))
